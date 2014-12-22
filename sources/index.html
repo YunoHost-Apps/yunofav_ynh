@@ -1,0 +1,339 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height">
+  <title>YunoFav</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut.css">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-col.css">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-messages.css">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-buttons.css">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/fonts.css">
+  <link rel="stylesheet" href="/yunohost/sso/assets/css/ynh-style.css">
+  <link rel="shortcut icon" href="/yunohost/sso/assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/yunohost/sso/assets/icons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/yunohost/sso/assets/icons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/yunohost/sso/assets/icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/yunohost/sso/assets/icons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/yunohost/sso/assets/icons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/yunohost/sso/assets/icons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/yunohost/sso/assets/icons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/yunohost/sso/assets/icons/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/yunohost/sso/assets/icons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/yunohost/sso/assets/icons/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/yunohost/sso/assets/icons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/yunohost/sso/assets/icons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/yunohost/sso/assets/icons/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#41444f">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <style>
+.form {
+  display:none;
+  height:230px;
+  width:400px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top:80px;
+  background:aliceblue ;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 7px 15px 0 15px;
+  opacity: .9;
+}  
+.close {
+  position: absolute;
+  top: 5px;
+  right:5px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url("/home/fav/close.png");
+  width:20px;
+  height:20px;
+  opacity:.5; 
+  cursor: pointer;
+  display:block; 
+}
+.close:hover {
+  opacity:1;
+}
+#edit {
+  display:none;
+}
+#favmenu {
+color: #bbb;
+margin: 2%;
+}
+#favmenu a {
+color: #fff;
+}
+#favmenu a:hover {
+text-decoration:underline;
+}
+#zone {
+margin:2% 4%;
+}
+label {
+  width: 50px;
+  text-align: right;
+  cursor: default;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  color: #000;
+  font-size: 1em;
+  margin-top: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+button, input, select, textarea {
+  margin: 5px 0 0 0;
+}
+input[type=submit] {
+  cursor: pointer;
+}
+.purplebg {
+    background: #9B59B6!important;
+}
+#ecol {
+  cursor: pointer;width:200px;height: 25px;display: inline-block;margin-top: 5px;border: 2px inset;margin-bottom: -7px;
+}
+.menu {position:absolute;display:none;border: thin solid #808080; cursor: pointer;width:200px; background-color:white;margin-top: 25px;}
+.menu div:hover {  opacity:1; }
+.menu div {width:200px;height: 25px;  opacity:.8;}
+
+  </style>
+  <script>
+//Global vars
+var doc = [];
+var codix = new Object();
+couleur={
+"lightbluebg" :"#6A93D4", 
+"bluebg"      :"#3498DB",
+"darkbluebg"  :"#34495E",
+"purpledarkbg":"#8E44AD",
+"purplebg"    :"#9B59B6",
+"pinkbg"      :"#D66D92",
+"lightpinkbg" :"#F76F87",
+"redbg"       :"#E74C3C",  
+"orangebg"    :"#F39C12",
+"yellowbg"    :"#F1C40F",
+"lightyellow" :"#FFC973",
+"lightgreen"  :"#77CF11",
+"greenbg"     :"#2ECC71",
+"turquoisebg" :"#1ABC9C"
+}
+
+//color menu
+function show(menu,e) {
+      document.getElementById(menu).style.display = 'inline';
+}
+//record on server
+function record() {
+  text=JSON.stringify(doc);
+  req.open("POST", "fav.php", true);
+  req.setRequestHeader("Content-type", "application/json");
+  req.send(text);
+}
+// hide color menu
+function hide(popmenu,e) {
+  if(e){
+    var target= e.currentTarget||e.srcElement;
+    var child=  e.relatedTarget||e.toElement
+    if (child) {    
+      while(child.parentElement){
+        if(target==child)return ; // coince la bulle
+        child=child.parentElement;
+      }
+    }
+  }
+  popmenu.style.display = 'none';
+}
+  
+// (Re)Init and (re)draw
+function setzone() 
+{ 
+  			var length=doc.tiles.length;
+				document.getElementById("zone").innerHTML = "";
+				options = " disabled >(choose)</option>";
+				codix={};
+        for(i = 0; i < length; i++)
+				{
+				  codix[doc.tiles[i].atom]=i;
+					document.getElementById("zone").innerHTML += "<li><a class="+doc.tiles[i].color+" disableAjax' href='"+doc.tiles[i].target+"'><span class='first-letter' data-first-letter='"+doc.tiles[i].atom+"'></span><span class='sourcePro'>"+doc.tiles[i].label+"</span></a></li>";
+					options += "<option>"+doc.tiles[i].atom+"</option>";
+				}
+  			document.getElementById("seledit").innerHTML = "<option id='selini'"+options;
+  			document.getElementById("selmoveto").innerHTML = "<option id='selmini'"+options+"<option>(last)</option>";
+  			codix["(last)"]=i;
+  			codix["(choose)"]=0;
+}
+// Hide form 
+function hideml(ca) {
+  ca.parentNode.style.display="none";
+}
+// Show form with appropriate fields
+function choiceml(opt) {
+  if (opt == 'Add'){
+    disp="none";
+    nodisp="inline";
+  } else {
+    disp="inline";
+    nodisp="none";
+  }
+  document.getElementById("titedit").innerHTML=opt;
+  document.getElementById("eact").innerHTML=opt;
+  document.getElementById("butedit").value=opt;
+  document.getElementById("seledit").style.display=disp;
+  document.getElementById("eact").style.display=disp;
+  document.getElementById("divedit").style.display=nodisp;
+  document.getElementById("moveto").style.display=nodisp;
+  document.getElementById("ecol").className="lightbluebg";
+  document.getElementById("encod").value="";
+  document.getElementById("elbl").value="";
+  document.getElementById("etgt").value="";
+  document.getElementById("edit").style.display="block";
+  document.getElementById("selini").selected = true;
+  document.getElementById("selmini").selected = true;
+}
+// Pick up selected color
+function scol(colbox,ca) {
+  document.getElementById(colbox).className=ca.className;
+  hideml(ca);
+  return false;
+}
+// Move a tile
+function movtile() {
+  if(document.getElementById("titedit").innerHTML=="Move"){
+    from=codix[document.getElementById("seledit").value];
+    to=codix[document.getElementById("selmoveto").value];
+    if(to>from) to-- ;
+    what = doc.tiles[from];
+    doc.tiles.splice(from, 1);
+    doc.tiles.splice(to, 0, what);
+    record();
+    document.getElementById("edit").style.display="none";
+  }
+  return false;
+}
+// On selected tile
+function showedit() {
+  choice=document.getElementById("seledit").value;
+  if (choice!="(choose)") {
+    what=doc.tiles[codix[choice]];
+    document.getElementById("encod").value="";
+    disp="inline";
+    switch(document.getElementById("titedit").innerHTML) {
+    case "Suppress":
+      doc.tiles.splice(codix[choice],1);
+      record();
+      document.getElementById("edit").style.display="none";
+    break;
+    case "Move":
+      document.getElementById("moveto").style.display="inline";
+    break;
+    case "Update":
+      document.getElementById("encod").value=what["atom"];
+      disp="none";
+    case "Duplicate":
+      document.getElementById("divedit").style.display="inline";
+      document.getElementById("seledit").style.display="none";
+      document.getElementById("moveto").style.display=disp;
+      document.getElementById("eact").style.display="none";
+      document.getElementById("elbl").value=what["label"];
+      document.getElementById("etgt").value=what["target"];
+      document.getElementById("ecol").className=what["color"];
+    break;
+    default:
+    }
+  }
+  return false;
+}
+// On form submit
+function edtile(ca) {
+  atom=document.getElementById("encod").value;
+  latom=atom.length;
+  if(latom<1 || latom>3) {
+    alert("The code of the tile must be 1 to 3 characters long.");
+  } else if(typeof codix[atom] != 'undefined' && atom != document.getElementById("seledit").value) { 
+    alert("The code you chose for the tile already exists.");
+  } else {
+    what={"color": document.getElementById("ecol").className, "atom": atom, "label": document.getElementById("elbl").value, "target": document.getElementById("etgt").value};
+    if (document.getElementById("titedit").innerHTML=="Update") {
+      doc.tiles[codix[document.getElementById("seledit").value]]=what;
+    } else {
+      doc.tiles.splice(codix[document.getElementById("selmoveto").value],0,what);
+    }
+    record();
+    ca.style.display="none";
+  }
+  return false;
+}
+// Call back function for Ajax
+function monCode() 
+{ 
+   if (req.readyState == 4) { 
+      text=req.responseText;
+      try {
+          JSON.parse(text);
+      } catch (e) {
+          text = '{"tiles": []}'; 
+      }
+      doc = JSON.parse(text);
+      setzone();        
+     }
+}
+// Ajax
+var req = new XMLHttpRequest();
+req.open("GET", "fav.json", true); 
+req.onreadystatechange = monCode;
+</script>
+</head>  
+<body onLoad='req.send(null);'>
+<div id="favmenu">These are your <span style="font-size:200%">favourite links</span>. You may want to <a href="javascript:void(0)" onclick="choiceml('Add');">add</a>, <a href="javascript:void(0)" onclick="choiceml('Suppress');">suppress</a>, <a href="javascript:void(0)" onclick="choiceml('Move');">move</a>, <a href="javascript:void(0)" onclick="choiceml('Update');">update</a> or <a href="javascript:void(0)" onclick="choiceml('Duplicate');">duplicate</a> one.
+</div>   
+<ul class="ul-reset listing-apps col colNomarge sourceProBold" id="zone"></ul>
+
+<form id="edit" class="form" onsubmit="return edtile(this);">
+<a class="close" href='javascript:void(0)' onClick='hideml(this);'>
+</a>
+<span style="font-size: 200%;"><span id="titedit"></span> a tile</span><br>
+<span id="eact"></span>
+<select id="seledit" onChange="return showedit();">
+</select>
+<span id="divedit"> 
+<label>Code:</label> <input type="text" id="encod" style="width:50px;" value=""><br>
+<label>Label:</label> <input type="text" id="elbl" style="width:300px;" value=""><br>
+<label>Target:</label> <input type="text" id="etgt" style="width:300px;" value=""><br>
+<label>Color:</label>
+<div id="eeltmenu" class="menu" onMouseOut="hide(this,event)"> 
+  <div onclick="scol('ecol',this)" class="lightbluebg"></div>
+  <div onclick="scol('ecol',this)" class="bluebg"></div>
+  <div onclick="scol('ecol',this)" class="darkbluebg"></div>
+  <div onclick="scol('ecol',this)" class="purpledarkbg"></div>
+  <div onclick="scol('ecol',this)" class="purplebg"></div>
+  <div onclick="scol('ecol',this)" class="pinkbg"></div>
+  <div onclick="scol('ecol',this)" class="lightpinkbg"></div>
+  <div onclick="scol('ecol',this)" class="redbg"></div>
+  <div onclick="scol('ecol',this)" class="orangebg"></div>
+  <div onclick="scol('ecol',this)" class="yellowbg"></div>
+  <div onclick="scol('ecol',this)" class="lightyellow"></div>
+  <div onclick="scol('ecol',this)" class="lightgreen"></div>
+  <div onclick="scol('ecol',this)" class="greenbg"></div>
+  <div onclick="scol('ecol',this)" class="turquoisebg"></div>
+</div>
+<div type="text" id="ecol" onclick="return show('eeltmenu',event);"></div>
+<br>
+<input type="submit" id="butedit">
+</span>
+<span id="moveto">
+before
+<select id="selmoveto" onChange="return movtile();">
+</select>
+</span>
+</form>
+</body>
+</html>
