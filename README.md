@@ -1,12 +1,10 @@
-# Yunofav : (unofficial) Favorite links for Yunohost #
-
-Attention : en cours de développement --- Ne fonctionne pas
+# Yunofav : (unofficial) Page of favorite links for Yunohost #
 
 ## Installation ##
 - Standard Yunohost installation.
 
 ## Functionality ##
-- Creates a page for your favoritite links, using the Yunohost tiles look and feel
+- Creates a page for your favorite links, using the Yunohost tiles look and feel
 
 **More information about Yunohost:**    
 https://yunohost.org
