@@ -7,7 +7,7 @@ domain=$1
 path=$2
 
 # Check domain/path availability
-sudo yunohost app checkurl $domain$path -a yunofav
+sudo yunohost app checkurl $domain$path -a $app
 if [[ ! $? -eq 0 ]]; then
     exit 1
 fi
@@ -19,7 +19,8 @@ sudo cp -a ../sources/* $final_path
 sudo chown -R www-data: $final_path
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
-sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
+sed -i "s@PATHTOCHANGE@$path@g"  ../conf/nginx.conf
+sed -i "s@WWWPATH@$final_path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 
 # Reload nginx and regenerate SSOwat conf

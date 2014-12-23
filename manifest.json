@@ -24,8 +24,8 @@
                     "en": "Choose a path for Yunofav",
                     "en": "Choisissez un chemin pour Yunofav"
                 },
-                "example": "/fav",
-                "default": "/fav"
+                "example": "/yunofav",
+                "default": "/yunofav"
             } ]
     }
 }
