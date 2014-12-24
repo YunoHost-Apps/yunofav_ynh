@@ -1,1 +1,1 @@
-{"tiles":[{"color":"redbg","atom":"Me","label":"MerryChristmas","target":"javascript:alert(\"And a happy new year !\")"},{"color":"bluebg","atom":"Go","label":"Google","target":"http://google.com"},{"color":"lightbluebg","atom":"Fo","label":"ForumYunohost","target":"https://forum.yunohost.org"}]}
+{"tiles":[{"color":"redbg","atom":"FoY","label":"Forum Yunohost","target":"https://forum.yunohost.org"},{"color":"bluebg","atom":"Goo","label":"Google","target":"http://google.com"},{"color":"purpledarkbg","atom":"Wki","label":"Wikipedia","target":"http://www.wikipedia.fr/"}]}
