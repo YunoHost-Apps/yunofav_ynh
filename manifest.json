@@ -15,14 +15,14 @@
                 "name": "domain",
                 "ask": {
                     "en": "Choose a domain for Yunofav",
-                    "en": "Choisissez un domaine pour Yunofav"
+                    "fr": "Choisissez un domaine pour Yunofav"
                 },
                 "example": "domain.org"
             },{
                 "name": "path",
                 "ask": {
                     "en": "Choose a path for Yunofav",
-                    "en": "Choisissez un chemin pour Yunofav"
+                    "fr": "Choisissez un chemin pour Yunofav"
                 },
                 "example": "/yunofav",
                 "default": "/yunofav"
