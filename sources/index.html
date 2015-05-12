@@ -5,11 +5,6 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height">
   <title>YunoFav</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut.css">
-  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-col.css">
-  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-messages.css">
-  <link rel="stylesheet" href="/yunohost/sso/assets/css/artichaut-buttons.css">
-  <link rel="stylesheet" href="/yunohost/sso/assets/css/fonts.css">
   <link rel="stylesheet" href="/yunohost/sso/assets/css/ynh-style.css">
   <link rel="shortcut icon" href="/yunohost/sso/assets/icons/favicon.ico">
   <link rel="apple-touch-icon" sizes="57x57" href="/yunohost/sso/assets/icons/apple-touch-icon-57x57.png">
@@ -163,7 +158,7 @@ function setzone()
         for(i = 0; i < length; i++)
 				{
 				  codix[doc.tiles[i].atom]=i;
-					document.getElementById("zone").innerHTML += "<li><a class="+doc.tiles[i].color+" disableAjax' href='"+doc.tiles[i].target+"'><span class='first-letter' data-first-letter='"+doc.tiles[i].atom+"'></span><span class='sourcePro'>"+doc.tiles[i].label+"</span></a></li>";
+					document.getElementById("zone").innerHTML += "<li><a class="+doc.tiles[i].color+" disableAjax' href='"+doc.tiles[i].target+"'><span class='first-letter' data-first-letter='"+doc.tiles[i].atom+"'></span><span class='name'>"+doc.tiles[i].label+"</span></a></li>";
 					options += "<option>"+doc.tiles[i].atom+"</option>";
 				}
   			document.getElementById("seledit").innerHTML = "<option id='selini'"+options;
