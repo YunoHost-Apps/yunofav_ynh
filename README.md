@@ -1,7 +1,5 @@
 # Yunofav : (unofficial) Page of favorite links for Yunohost #
 
-Message from Chtixof : I have not being using this for a while. I grant this to YunoHost-Apps, for the community to decide what to do with it.
-
 ## Installation ##
 - Standard Yunohost installation.
 
