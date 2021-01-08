@@ -1,31 +1,58 @@
 {
-    "name": "Yunofav",
+    "name": "YunoFav",
     "id": "yunofav",
+    "packaging_format": 1,
     "description": {
-        "en": "A page of favorite links for Yunohost",
-        "fr": "Une page de liens favoris pour Yunohost"
+        "en": "A page of favorite links",
+        "fr": "Une page de liens favoris"
     },
+    "version": "1.0~ynh1",
+    "url": "https://github.com/YunoHost-Apps/yunofav_ynh/",
     "license": "MIT",
     "developer": {
         "name": "chtixof"
     },
-    "multi_instance": "false",
+    "maintainer": {
+        "name": "YunoHost Contributors",
+        "email": "apps@yunohost.org"
+    },
+    "requirements": {
+        "yunohost": ">= 3.8.1"
+    },
+    "multi_instance": false,
+    "services": [
+        "nginx"
+    ],
     "arguments": {
-        "install" : [            {
+        "install" : [
+            {
                 "name": "domain",
+                "type": "domain",
                 "ask": {
-                    "en": "Choose a domain for Yunofav",
-                    "fr": "Choisissez un domaine pour Yunofav"
+                    "en": "Choose a domain for YunoFav",
+                    "fr": "Choisissez un domaine pour YunoFav"
                 },
                 "example": "domain.org"
-            },{
+            },
+            {
                 "name": "path",
+                "type": "path",
                 "ask": {
-                    "en": "Choose a path for Yunofav",
-                    "fr": "Choisissez un chemin pour Yunofav"
+                    "en": "Choose a path for YunoFav",
+                    "fr": "Choisissez un chemin pour YunoFav"
                 },
                 "example": "/yunofav",
                 "default": "/yunofav"
-            } ]
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "ask": {
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
+                },
+                "default": true
+            }
+        ]
     }
 }
