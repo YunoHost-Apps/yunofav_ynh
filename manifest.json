@@ -1,5 +1,5 @@
 {
-    "name": "YunoFav",
+    "name": "Yunofav",
     "id": "yunofav",
     "packaging_format": 1,
     "description": {
@@ -19,7 +19,7 @@
     "requirements": {
         "yunohost": ">= 3.8.1"
     },
-    "multi_instance": false,
+    "multi_instance": true,
     "services": [
         "nginx"
     ],
@@ -29,8 +29,8 @@
                 "name": "domain",
                 "type": "domain",
                 "ask": {
-                    "en": "Choose a domain for YunoFav",
-                    "fr": "Choisissez un domaine pour YunoFav"
+                    "en": "Choose a domain for Yunofav",
+                    "fr": "Choisissez un domaine pour Yunofav"
                 },
                 "example": "domain.org"
             },
@@ -38,8 +38,8 @@
                 "name": "path",
                 "type": "path",
                 "ask": {
-                    "en": "Choose a path for YunoFav",
-                    "fr": "Choisissez un chemin pour YunoFav"
+                    "en": "Choose a path for Yunofav",
+                    "fr": "Choisissez un chemin pour Yunofav"
                 },
                 "example": "/yunofav",
                 "default": "/yunofav"
@@ -50,6 +50,10 @@
                 "ask": {
                     "en": "Is it a public application?",
                     "fr": "Est-ce une application publique ?"
+                },
+                "help": {
+                    "en": "If enabled, Yunofav will be accessible by people who do not have an account. This can be changed later via the webadmin.",
+                    "fr": "Si cette case est cochée, Yunofav sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
                 "default": true
             }
