@@ -23,7 +23,7 @@ A page of favorite links
 
 ## Screenshots
 
-![](./doc/screenshots/ScreenHunter_01 Dec. 24 16.37.gif)
+![](./doc/screenshots/ScreenHunter_01 Dec. 24 16.37.png)
 
 ## Documentation and resources
 
