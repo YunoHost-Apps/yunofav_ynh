@@ -27,6 +27,7 @@ A page of favorite links
 
 ## Documentation and resources
 
+* Upstream app code repository: https://github.com/YunoHost-Apps/yunofav_ynh/
 * YunoHost documentation for this app: https://yunohost.org/app_yunofav
 * Report a bug: https://github.com/YunoHost-Apps/yunofav_ynh/issues
 
