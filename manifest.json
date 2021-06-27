@@ -8,6 +8,10 @@
     },
     "version": "1.0~ynh1",
     "url": "https://github.com/YunoHost-Apps/yunofav_ynh/",
+    "upstream": {
+        "license": "MIT",
+        "code": "https://github.com/YunoHost-Apps/yunofav_ynh/"
+    },
     "license": "MIT",
     "developer": {
         "name": "chtixof"
