@@ -23,6 +23,7 @@ Une page de liens favoris
 
 ## Documentations et ressources
 
+* Dépôt de code officiel de l'app : https://github.com/YunoHost-Apps/yunofav_ynh/
 * Documentation YunoHost pour cette app : https://yunohost.org/app_yunofav
 * Signaler un bug : https://github.com/YunoHost-Apps/yunofav_ynh/issues
 
