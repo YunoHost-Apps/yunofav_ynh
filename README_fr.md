@@ -19,7 +19,7 @@ Une page de liens favoris
 
 ## Captures d'écran
 
-![](./doc/screenshots/ScreenHunter_01 Dec. 24 16.37.png)
+![](./doc/screenshots/Screenshot.png)
 
 ## Documentations et ressources
 
